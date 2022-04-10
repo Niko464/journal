@@ -1,0 +1,13 @@
+version: "3.5"
+services:
+  backend:
+    container_name: backend
+    build: ./backend
+    ports:
+      - "8081:8081"
+    restart: always
+    env_file: ./.env
+  
+networks:
+  backend-network:
+    driver: bridge
