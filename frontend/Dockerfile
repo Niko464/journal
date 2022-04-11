@@ -1,9 +1,5 @@
-FROM node:lts-bullseye-slim
+FROM node:lts-alpine
 
-WORKDIR /home/node/app
+COPY ./ ./
 
-COPY ./wait-for.sh /root/wait-for.sh
-
-RUN chmod +x /root/wait-for.sh
-
-CMD /root/wait-for.sh mobile:8082 -t 600 -- cp build/client.apk public/client.apk && yarn install && yarn start
+CMD npm install && npm start

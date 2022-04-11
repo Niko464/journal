@@ -14,7 +14,7 @@ fastify.get("/superTest", (req, reply) => {
     reply.send({ hello: "world" })
 })
 
-require('./routes/auth')(fastify)
+//require('./routes/auth')(fastify)
 
 try {
     fastify.listen(process.env.API_PORT, '0.0.0.0');
@@ -25,15 +25,7 @@ try {
 }
 
 /*
-frontend:
-    container_name: frontend
-    build: ./frontend
-    ports:
-      - "8080:8080"
-    depends_on:
-      - backend
-      - database
-    restart: always
+
 
 
 database:
