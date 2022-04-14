@@ -1,12 +1,12 @@
-import { render } from 'react-dom'
+import { createRoot } from 'react-dom/client'
 import {
   BrowserRouter,
   Routes,
   Route
 } from "react-router-dom"
 import MainPage from './routes/main'
-/*import Signup from './routes/signup'
-import Login from './routes/login'*/
+import Signup from './routes/signup'
+import Login from './routes/login'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 
 const theme = createTheme({
@@ -15,7 +15,7 @@ const theme = createTheme({
     type: "dark",
     primary: {
       main: '#F4CE54', //#F4CE54  #3f51b5
-      mainTextColor: "white",
+      mainTextColor: "#fff",
       subTextColor: "gray",
     },
     secondary: {
@@ -36,18 +36,16 @@ const theme = createTheme({
 
 document.body.style = "background: " + theme.palette.background
 
-render(
+const root = createRoot(document.getElementById("root"));
+
+root.render(
   <ThemeProvider theme={theme}>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<MainPage />} />
-        
+        <Route path="signup" element={<Signup />} />
+        <Route path="login" element={<Login />} />
       </Routes>
     </BrowserRouter>
-  </ThemeProvider>,
-  document.getElementById("root")
+  </ThemeProvider>
 );
-/*
-<Route path="signup" element={<Signup />} />
-        <Route path="login" element={<Login />} />
-        */

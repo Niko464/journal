@@ -11,13 +11,12 @@ fastify.register(require('fastify-swagger'), {
     }
 })
 fastify.register(fastifyPlugin(async (fastify, options, done) => {
-    console.log("SECOND MongoURL: " + process.env.MONGODB_URI)
-    console.log("it did indeed work")
 
-    /*await fastify.register(require('fastify-mongodb'), {
+    await fastify.register(require('fastify-mongodb'), {
         forceClose: true,
-        url: process.env.MONGODB_URI
-    });*/
+        url: "mongodb://database:" + process.env.MONGODB_PORT
+    });
+    console.log("Connected to MongoDB")
     done();
 }));
 
@@ -34,13 +33,5 @@ try {
 }
 
 /*
-frontend:
-    container_name: frontend
-    build: ./frontend
-    ports:
-      - "8080:3000"
-    depends_on:
-      - backend
-      - database
-    restart: always
+
     */

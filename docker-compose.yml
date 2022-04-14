@@ -10,12 +10,18 @@ services:
     env_file: ./.env
     depends_on:
       - database
-    environment:
-      - MONGODB_URI="mongodb://localhost:27017"
-    links:
+    restart: always
+  frontend:
+    container_name: frontend
+    build: ./frontend
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./frontend:/app
+    depends_on:
+      - backend
       - database
     restart: always
-
   database:
     container_name: database
     command: mongod --quiet --logpath /dev/null

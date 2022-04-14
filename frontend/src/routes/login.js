@@ -102,7 +102,7 @@ export default function Login() {
             <Typography
               sx={{
                 fontSize: "40px",
-                color: "white"
+                color: "#fff"
               }}>Area - Login</Typography>
             <Divider
               orientation="horizontal"
@@ -159,7 +159,7 @@ export default function Login() {
                 sx={{
                   font: "Kayak",
                   fontSize: "20px",
-                  color: "white",
+                  color: "#fff",
                   margin: "0px 10px",
                   borderColor: theme.palette.primary.main,
                   borderRadius: "10px",
@@ -182,7 +182,7 @@ export default function Login() {
                 <Link
                   href="/signup"
                   sx={{
-                    color: "white",
+                    color: "#fff",
                     marginLeft: "auto"
                   }}>Don't have an account yet ?</Link>
               </div>

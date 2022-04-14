@@ -1,5 +1,5 @@
 FROM node:lts-alpine
 
-COPY ./ ./
+WORKDIR /app
 
 CMD npm install && npm start
