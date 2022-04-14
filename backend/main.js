@@ -1,41 +1,46 @@
 const fastify = require('fastify')()
+const fastifyPlugin = require('fastify-plugin');
 
 fastify.register(require('fastify-swagger'), {
-  exposeRoute: true,
-  routePrefix: "/docs",
-  swagger: {
-    info: {
-      title: "Journal API"
+    exposeRoute: true,
+    routePrefix: "/docs",
+    swagger: {
+        info: {
+            title: "Journal API"
+        }
     }
-  }
 })
+fastify.register(fastifyPlugin(async (fastify, options, done) => {
+    console.log("SECOND MongoURL: " + process.env.MONGODB_URI)
+    console.log("it did indeed work")
 
-fastify.get("/superTest", (req, reply) => {
-    reply.send({ hello: "world" })
-})
+    /*await fastify.register(require('fastify-mongodb'), {
+        forceClose: true,
+        url: process.env.MONGODB_URI
+    });*/
+    done();
+}));
 
-//require('./routes/auth')(fastify)
+require('module-alias/register');
+require('@routes/auth')(fastify)
 
 try {
     fastify.listen(process.env.API_PORT, '0.0.0.0');
     console.log(`Listening on 0.0.0.0 ${process.env.API_PORT}`);
 } catch (err) {
     console.log(err);
+    console.log("Server stopped");
     process.exit(84);
 }
 
 /*
-
-
-
-database:
-    container_name: database
-    image: mongo:latest
+frontend:
+    container_name: frontend
+    build: ./frontend
     ports:
-      - "27017:27017"
-    volumes:
-      - ./database:/data/db
-    networks:
-      - backend-network
+      - "8080:3000"
+    depends_on:
+      - backend
+      - database
     restart: always
-*/
+    */

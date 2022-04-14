@@ -5,17 +5,23 @@ services:
     build: ./backend
     ports:
       - "8081:8081"
-    restart: always
+    volumes:
+      - ./backend:/app
     env_file: ./.env
-  frontend:
-    container_name: frontend
-    build: ./frontend
-    ports:
-      - "8080:3000"
     depends_on:
-      - backend
+      - database
+    environment:
+      - MONGODB_URI="mongodb://localhost:27017"
+    links:
+      - database
     restart: always
-  
-networks:
-  backend-network:
-    driver: bridge
+
+  database:
+    container_name: database
+    command: mongod --quiet --logpath /dev/null
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./database:/data/db
+    restart: always
