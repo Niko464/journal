@@ -1,0 +1,7 @@
+POST http://localhost:8081/api/topics HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtYWlsIjoibWVnYW1vbnN0ZXJjcmFmdEBnbWFpbC5jb20iLCJpYXQiOjE2NTA0NDYyMDgsImV4cCI6MTY1MDYxOTAwOH0.aoRdYzJOmWdIR-lRJJavL6w8LeJjutYIikMD7rba0n8
+
+{
+    "topicName": "Money Management"
+}

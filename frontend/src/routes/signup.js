@@ -56,7 +56,7 @@ export default function Signup() {
   ]
 
   function signupSuccessCallback(json) {
-    cookies.setSessionCookie(json.token)
+    cookies.setSessionCookie(json.jwt)
     navigate("/")
   }
 
@@ -139,7 +139,7 @@ export default function Signup() {
               sx={{
                 fontSize: "40px",
                 color: "#fff"
-              }}>Area - Signup</Typography>
+              }}>Journal - Signup</Typography>
             <Divider
               orientation="horizontal"
               variant="middle"

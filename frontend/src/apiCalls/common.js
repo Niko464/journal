@@ -15,3 +15,9 @@ export async function makeAPIRequest(url, options, successCallback, failCallback
     .then(json => successCallback(json))
     .catch(() => {})
 }
+
+export function makePromiseAPIRequest(url, options) {
+  return new Promise((resolve, reject) => {
+    makeAPIRequest(url, options, resolve, reject)
+  })
+}

@@ -7,6 +7,8 @@ import {
 import MainPage from './routes/main'
 import Signup from './routes/signup'
 import Login from './routes/login'
+import TopicsPage from "./routes/topics"
+import HistoryPage from "./routes/history"
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 
 const theme = createTheme({
@@ -22,8 +24,8 @@ const theme = createTheme({
       main: '#f50057', //#f50057
     },
     foreground: "#373737",
-    middleground: "#33363C",
-    background: "#232323",
+    middleground: "#31363F",
+    background: "#24292E",
     error: {
       main: "#ed0e36",
       second: "#a1001d",
@@ -43,8 +45,10 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<MainPage />} />
+        <Route path="topics" element={<TopicsPage />} />
         <Route path="signup" element={<Signup />} />
         <Route path="login" element={<Login />} />
+        <Route path="history" element={<HistoryPage />} />
       </Routes>
     </BrowserRouter>
   </ThemeProvider>

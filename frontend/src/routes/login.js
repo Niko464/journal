@@ -36,7 +36,7 @@ export default function Login() {
   ]
 
   function loginSuccessCallback(json) {
-    cookies.setSessionCookie(json.token)
+    cookies.setSessionCookie(json.jwt)
     navigate("/")
   }
 
@@ -103,7 +103,7 @@ export default function Login() {
               sx={{
                 fontSize: "40px",
                 color: "#fff"
-              }}>Area - Login</Typography>
+              }}>Journal - Login</Typography>
             <Divider
               orientation="horizontal"
               variant="middle"

@@ -17,6 +17,7 @@
     "fastify-mongodb": "^4.1.1",
     "fastify-plugin": "^3.0.1",
     "fastify-swagger": "^5.1.0",
+    "fastify-cors": "latest",
     "module-alias": "^2.2.2",
     "nodemon": "^2.0.15"
   },

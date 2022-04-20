@@ -12,7 +12,7 @@ export async function askServerToSignup(username, email, password, successCallba
       mail: email
     })
   }
-  await makeAPIRequest(`http://` + process.env.BACKEND_HOST + `:8080/api/auth/signup`, options, successCallback, failCallback)
+  await makeAPIRequest(`http://localhost:8081/api/auth/signup`, options, successCallback, failCallback)
 }
 
 export async function askServerToLogin(email, password, successCallback, failCallback) {
@@ -26,5 +26,5 @@ export async function askServerToLogin(email, password, successCallback, failCal
       password: password
     })
   }
-  await makeAPIRequest(`http://` + process.env.BACKEND_HOST + `:8080/api/auth/login`, options, successCallback, failCallback)
+  await makeAPIRequest(`http://localhost:8081/api/auth/login`, options, successCallback, failCallback)
 }

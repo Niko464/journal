@@ -1,11 +1,10 @@
 import Navbar from "components/NavBar"
-import TopicsWriter from "components/TopicsWriter"
+import { TopicsManager } from "components/TopicsManager"
 import * as cookies from "Cookies"
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 
-export default function MainPage() {
-
+export default function TopicsPage() {
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -17,7 +16,7 @@ export default function MainPage() {
   return (
     <>
       <Navbar/>
-      <TopicsWriter />
+      <TopicsManager />
     </>
   )
 }
