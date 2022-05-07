@@ -48,6 +48,7 @@ fastify.decorate('authentication', async (req, res) => {
 require('module-alias/register');
 require('@routes/auth')(fastify);
 require('@routes/topics')(fastify);
+require('@routes/articles')(fastify);
 
 try {
     fastify.listen(process.env.API_PORT, '0.0.0.0');

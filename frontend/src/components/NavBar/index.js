@@ -15,36 +15,38 @@ const Navbar = () => {
     setOpen(!isOpen);
   }
   return (
-    <Theme>
-      <DesktopNavContainer>
-        <NavLink to="/">
-          <img src={"logo.png"} width={64} alt="logo" />
-        </NavLink>
-        <Bars onClick={toggle}>
-          <FaBars />
-        </Bars>
-        <NavMenu>
+    <div style={{height: "120px", marginTop: "10px"}}>
+      <Theme>
+        <DesktopNavContainer>
           <NavLink to="/">
-            Home
+            <img src={"logo.png"} width={64} alt="logo" />
           </NavLink>
-          <NavLink to="/topics">
-            Topics
-          </NavLink>
-          <NavLink to="/history">
-            History
-          </NavLink>
-        </NavMenu>
-        <RightBtnContainer>
-          <NavBtnLink onClick={() => {
-            cookies.removeUserCookie()
-            navigate("/login");
-          }}>
-            Logout
-          </NavBtnLink>
-        </RightBtnContainer>
-      </DesktopNavContainer>
-      <SideMenu isOpen={isOpen} toggle={toggle} />
-    </Theme>
+          <Bars onClick={toggle}>
+            <FaBars />
+          </Bars>
+          <NavMenu>
+            <NavLink to="/">
+              Home
+            </NavLink>
+            <NavLink to="/topics">
+              Topics
+            </NavLink>
+            <NavLink to="/history">
+              History
+            </NavLink>
+          </NavMenu>
+          <RightBtnContainer>
+            <NavBtnLink onClick={() => {
+              cookies.removeUserCookie()
+              navigate("/login");
+            }}>
+              Logout
+            </NavBtnLink>
+          </RightBtnContainer>
+        </DesktopNavContainer>
+        <SideMenu isOpen={isOpen} toggle={toggle} />
+      </Theme>
+    </div>
   )
 }
 

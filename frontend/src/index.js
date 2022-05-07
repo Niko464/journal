@@ -10,6 +10,7 @@ import Login from './routes/login'
 import TopicsPage from "./routes/topics"
 import HistoryPage from "./routes/history"
 import { createTheme, ThemeProvider } from '@mui/material/styles'
+import "index.css"
 
 const theme = createTheme({
   palette: {

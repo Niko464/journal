@@ -19,6 +19,7 @@
     "fastify-swagger": "^5.1.0",
     "fastify-cors": "latest",
     "module-alias": "^2.2.2",
+    "moment": "^2.29.3",
     "nodemon": "^2.0.15"
   },
   "_moduleAliases": {
