@@ -9,6 +9,7 @@ import Signup from './routes/signup'
 import Login from './routes/login'
 import TopicsPage from "./routes/topics"
 import HistoryPage from "./routes/history"
+import SpecificArticle from "./routes/specificArticle"
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import "index.css"
 
@@ -50,6 +51,7 @@ root.render(
         <Route path="signup" element={<Signup />} />
         <Route path="login" element={<Login />} />
         <Route path="history" element={<HistoryPage />} />
+        <Route path="article/:id" element={<SpecificArticle />} />
       </Routes>
     </BrowserRouter>
   </ThemeProvider>

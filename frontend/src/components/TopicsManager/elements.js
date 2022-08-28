@@ -1,40 +1,6 @@
 import styled from "styled-components"
 import { Link } from "react-router-dom"
 
-export const Wrapper = styled.div(({ theme }) => `
-  display: flex;
-  flex-direction: column;
-  background: ${theme.colors.middleground};
-  max-width: 900px;
-  width: 100%;
-  border-radius: 5px;
-  margin-left: 20px;
-  margin-right: 20px;
-
-  @media screen and (min-width: 900px) {
-    width: 900px;
-  }
-`)
-
-export const TopicsList = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  margin-left: 10px;
-  margin-right: 10px;
-`
-
-export const TopicsTitle = styled.h1(({ theme }) => `
-  color: ${theme.colors.title};
-  margin: 1rem;
-`)
-
-export const TopicsDescription = styled.p(({ theme }) => `
-  color: ${theme.colors.subtitle};
-  margin: 0rem 0rem 1rem 1rem;
-`)
-
 export const TopicWrapper = styled.div(({ theme }) => `
   display: flex;
   align-items: center;
@@ -118,21 +84,5 @@ export const TextBox = styled.input(({ theme }) => `
 
   ::placeholder {
     color: ${theme.colors.subtitle};
-  }
-`)
-
-export const CreateBtn = styled.button(({ theme }) => `
-  outline: none;
-  border: 1.5px solid ${theme.colors.primary.main};
-  border-radius: 30px;
-  color: ${theme.colors.primary.textWhite};
-  font-size: 1.1rem;
-  transition: all 0.2s ease-in-out;
-  background: transparent;
-
-  &:hover {
-    transition: all 0.2s ease-in-out;
-    background: ${theme.colors.hover.main};
-    color: ${theme.colors.hover.textBlack};
   }
 `)

@@ -5,7 +5,6 @@ import TextareaAutosize from 'react-textarea-autosize';
 export const WritingSection = ({ textRef }) => {
   const [text, setText] = useState("");
 
-  console.log("writing section rerender")
   return (
     <TextareaAutosize ref={textRef} name="writingSection" placeholder="Write your texte here..." value={text} onChange={(e) => setText(e.target.value)}
       minRows={3}

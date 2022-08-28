@@ -1,13 +1,22 @@
 import { useEffect, useState, createRef } from "react";
 import { Divider } from "@mui/material";
-import { Wrapper, TopicsList, TopicsTitle, TopicElem, TopicElemClose, AddTopicBtn, TopicsDescription, SaveBtn } from "./elements";
+import { TopicElem, TopicElemClose, AddTopicBtn } from "./elements";
 import { WritingSection } from "./WritingSection";
 import Theme from "Theme"
 import { getTopicsList } from "apiCalls/Topics"
 import * as snackbars from "Snackbar"
-import DatePicker from "react-datepicker";
+import DatePicker, { registerLocale } from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import fr from "date-fns/locale/fr"
 import moment from "moment";
 import { createServerSideArticle } from "apiCalls/Articles"
+import HorizontalTopicList from "components/HorizontalTopicList";
+import MiddlePageBackground from "components/MiddlePageBackground";
+import Title from "components/Title";
+import Description from "components/Description";
+import BtnOne from "components/Buttons/BtnOne";
+
+registerLocale("fr", fr);
 
 const TopicsWriter = ({ setSnackbarSettings }) => {
   const [topicsList, setTopicsList] = useState([]);
@@ -15,7 +24,6 @@ const TopicsWriter = ({ setSnackbarSettings }) => {
   const textRef = createRef();
 
   useEffect(() => {
-    console.log("useEffect")
     getTopicsList()
       .then(res => {
         let newTopicsList = []
@@ -44,7 +52,8 @@ const TopicsWriter = ({ setSnackbarSettings }) => {
 
   function saveText() {
     const text = textRef.current.value;
-    const selectedTopics = topicsList.filter(topic => topic.selected === true);
+    const selectedTopics = topicsList.filter(topic => topic.selected === true)
+      .map((elem) => elem.name);
 
     if (text === "") {
       snackbars.changeSnackbarSettings("error", "You can't save empty text.", setSnackbarSettings)
@@ -54,7 +63,6 @@ const TopicsWriter = ({ setSnackbarSettings }) => {
       snackbars.changeSnackbarSettings("error", "You can't save text without selecting at least one topic.", setSnackbarSettings)
       return;
     }
-    console.log(date)
     if (date === null || date === undefined || date === "") {
       snackbars.changeSnackbarSettings("error", "You can't save text without selecting date.", setSnackbarSettings)
       return;
@@ -64,21 +72,24 @@ const TopicsWriter = ({ setSnackbarSettings }) => {
       snackbars.changeSnackbarSettings("error", "You can't save text with invalid date.", setSnackbarSettings)
       return;
     }
-    let formatedDate = parsedDate.format("YYYY-MM-DD")
-    createServerSideArticle(selectedTopics, text, formatedDate)
+    createServerSideArticle(selectedTopics, text, date.getTime())
+      .then(() => {
+        snackbars.changeSnackbarSettings("success", "Article saved.", setSnackbarSettings)
+      })
+      .catch((err) => {
+        snackbars.changeSnackbarSettings("error", "Error while saving article.", setSnackbarSettings)
+      })
   }
-
-  console.log("rerender")
 
   return (
     <Theme>
       <div style={{ justifyContent: "center", display: "flex" }}>
-        <Wrapper>
-          <TopicsTitle>What do you want to write about today ?</TopicsTitle>
-          <TopicsDescription>Select the topics you want to write about, and start typing.</TopicsDescription>
-          <TopicsDescription>You can also select a date in case you want to save stuff you wrote a long time ago.</TopicsDescription>
+        <MiddlePageBackground>
+          <Title>What do you want to write about today ?</Title>
+          <Description>Select the topics you want to write about, and start typing.</Description>
+          <Description>You can also select a date in case you want to save stuff you wrote a long time ago.</Description>
           <Divider variant="middle" sx={{ marginBottom: "10px", marginTop: "15px" }} />
-          <TopicsList>
+          <HorizontalTopicList>
             {
               topicsList.map((elem) => {
                 return (
@@ -95,7 +106,7 @@ const TopicsWriter = ({ setSnackbarSettings }) => {
 
             {(topicsList.length === 0) ?
               <div style={{ display: "flex", width: "100%", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
-                <TopicsDescription>You don't have any topics yet, click on the button below to create one</TopicsDescription>
+                <Description>You don't have any topics yet, click on the button below to create one</Description>
                 <AddTopicBtn to="/topics">New</AddTopicBtn>
               </div>
               :
@@ -103,18 +114,24 @@ const TopicsWriter = ({ setSnackbarSettings }) => {
                 <AddTopicBtn to="/topics">New</AddTopicBtn>
               </div>
             }
-          </TopicsList>
+          </HorizontalTopicList>
 
           <Divider variant="middle" sx={{ marginTop: "10px", marginBottom: "10px" }} />
           <WritingSection textRef={textRef} />
+          <DatePicker
+            dateFormat="P"
+            locale="fr"
+            selected={date}
+            onChange={(newDate) => setDate(newDate)} />
           <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <SaveBtn onClick={() => saveText()}>Save</SaveBtn>
+            <BtnOne onClick={() => saveText()}>Save</BtnOne>
           </div>
-          <DatePicker closeOnScroll={true} selected={date} onChange={(newDate) => setDate(newDate)} />
-        </Wrapper>
+        </MiddlePageBackground>
       </div>
     </Theme>
   )
 }
 
 export default TopicsWriter;
+
+//closeOnScroll={true} selected={date} 

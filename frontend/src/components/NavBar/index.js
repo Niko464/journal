@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom"
 import SideMenu from "./SideMenu"
 import { FaBars } from "react-icons/fa"
 import { useState } from "react"
+import logo from "./logo.png"
 
 const Navbar = () => {
   const [isOpen, setOpen] = useState(false);
@@ -19,7 +20,7 @@ const Navbar = () => {
       <Theme>
         <DesktopNavContainer>
           <NavLink to="/">
-            <img src={"logo.png"} width={64} alt="logo" />
+            <img src={logo} width={64} alt="logo" />
           </NavLink>
           <Bars onClick={toggle}>
             <FaBars />

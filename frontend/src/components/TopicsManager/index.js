@@ -1,10 +1,15 @@
 import { useEffect, useState } from "react";
 import { Divider } from "@mui/material";
-import { Wrapper, TopicsList, TopicsTitle, TopicsDescription, TopicWrapper, TopicElem, TopicElemDel, TextBox, CreateBtn } from "./elements";
+import { TopicWrapper, TopicElem, TopicElemDel, TextBox } from "./elements";
 import Theme from "Theme"
 import { getTopicsList, createServerSideTopic, deleteServerSideTopic } from "apiCalls/Topics"
 import { AiFillDelete } from "react-icons/ai"
 import * as snackbars from "Snackbar"
+import HorizontalTopicList from "components/HorizontalTopicList";
+import MiddlePageBackground from "components/MiddlePageBackground";
+import Title from "components/Title";
+import Description from "components/Description";
+import BtnOne from "components/Buttons/BtnOne";
 
 export const TopicsManager = ({ setSnackbarSettings }) => {
   const [topicField, setTopicField] = useState("");
@@ -64,18 +69,18 @@ export const TopicsManager = ({ setSnackbarSettings }) => {
   return (
     <Theme>
       <div style={{ justifyContent: "center", display: "flex" }}>
-        <Wrapper>
-          <TopicsTitle>Topics</TopicsTitle>
-          <TopicsDescription>Here you have all your topics ordered by the amount of times you wrote about them, this page has been made so that you could manage your topics.</TopicsDescription>
-          <Divider variant="middle" sx={{ marginBottom: "10px" }} />
+        <MiddlePageBackground>
+          <Title>Topics</Title>
+          <Description>Here you have all your topics ordered by the amount of times you wrote about them, this page has been made so that you could manage your topics.</Description>
+          <Divider variant="middle" sx={{ marginBottom: "10px", marginTop: "10px" }} />
           <div style={{ display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column" }}>
             <TextBox placeholder="Add a new topic" value={topicField} onChange={(e) => setTopicField(e.target.value)} />
-            <CreateBtn onClick={createTopic}>Create topic</CreateBtn>
+            <BtnOne style={{width: "200px"}} onClick={createTopic}>Create topic</BtnOne>
           </div>
           <Divider variant="middle" sx={{ marginBottom: "10px", marginTop: "10px" }} />
-          <TopicsList>
+          <HorizontalTopicList>
             {(topicsList.length === 0) &&
-              <TopicsDescription>No topics yet.</TopicsDescription>
+              <Description>No topics yet.</Description>
             }
             {
               topicsList.map((elem) => {
@@ -93,8 +98,8 @@ export const TopicsManager = ({ setSnackbarSettings }) => {
                 )
               })
             }
-          </TopicsList>
-        </Wrapper>
+          </HorizontalTopicList>
+        </MiddlePageBackground>
       </div>
     </Theme>
   )

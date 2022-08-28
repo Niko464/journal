@@ -16,3 +16,25 @@ export function createServerSideArticle(topics, text, date) {
     }
     return makePromiseAPIRequest(`http://localhost:8081/api/articles`, options)
 }
+
+export function getServerArticles() {
+    const options = {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + cookies.getUserCookie()
+        }
+    }
+    return makePromiseAPIRequest(`http://localhost:8081/api/articles`, options)
+}
+
+export function getArticleDetails(id) {
+    const options = {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + cookies.getUserCookie()
+        }
+    }
+    return makePromiseAPIRequest('http://localhost:8081/api/articles/' + id, options)
+}

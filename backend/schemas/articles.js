@@ -6,7 +6,7 @@ module.exports = {
             properties: {
                 text: { type: 'string' },
                 topics: { type: 'array', items: { type: 'string' } },
-                date: { type: 'string' }
+                date: { type: 'number' }
             }
         }
     },
